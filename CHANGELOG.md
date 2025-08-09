@@ -21,6 +21,9 @@ The main work (all changes without a GitHub username in brackets in the below li
     - Enhancement: Uses "stat" to determine storage file existence instead of reading all content
     - Fix: Corrects network interface selection logic for windows 
 
+-   @matter/react-native
+    - Fix: (Luxni) Update UDP, BLE and Crypto usage to work with React Native
+
 ## 0.15.3 (2025-08-01)
 
 -   @matter/protocol
