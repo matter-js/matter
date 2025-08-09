@@ -28,6 +28,7 @@ import {
 import { OperationalState } from "@matter/main/clusters/operational-state";
 import { RvcOperationalState } from "@matter/main/clusters/rvc-operational-state";
 import { RoboticVacuumCleanerDevice } from "@matter/main/devices/robotic-vacuum-cleaner";
+import { MdnsAdvertiser } from "@matter/main/protocol";
 import { DeviceTypeId, VendorId } from "@matter/main/types";
 import { BackchannelCommand, chip, PicsSource } from "@matter/testing";
 import { TestRvcCleanModeServer } from "./cluster/TestRvcCleanModeServer.js";
@@ -196,6 +197,18 @@ export class RvcTestInstance extends NodeTestInstance {
                 commissioning: {
                     passcode: this.config.passcode ?? 20202021,
                     discriminator: this.config.discriminator ?? 3840,
+
+                    // See comments in AllClustersTestApp
+                    // TODO - if this is necessary for CI further investigation is required to determine root cause
+                    mdns: {
+                        schedules: [
+                            {
+                                ...MdnsAdvertiser.DefaultBroadcastSchedule,
+                                broadcastAfterConnection: 10_000,
+                            },
+                            MdnsAdvertiser.RetransmissionBroadcastSchedule,
+                        ],
+                    },
                 },
                 productDescription: {
                     name: this.appName,

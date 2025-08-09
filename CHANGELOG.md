@@ -17,6 +17,15 @@ The main work (all changes without a GitHub username in brackets in the below li
     - Breaking: MaybeAsyncStorage got renamed to Storage because it is the only interface from now on
     - Feature: Adds Blob support to the Storage interface
 
+-   @matter/protocol
+    - Breaking: The platform-specific BLE abstraction has changed so that higher-level logic may be shared across platforms
+    - Breaking: Low-level advertising APIs have changed significantly; in particular, `MdnsBroadcaster`, `MdnsInstanceBroadcaster` and `MdnsScanner` are replaced by `MdnsServer`, `MdnsAdvertisement` and `MdnsClient`
+    - Feature: Adds support for advertising of TCP and ICD services (but matter.js does not yet implement those features otherwise)
+    - Feature: Adds support for extended advertisement
+    - Enhancement: MDNS broadcasts more aggressively until a connection is established
+    - Enhancement: MDNS and BLE advertising schedules are now configurable and conform to Matter and DNS-SD specifications
+    - Enhancement: MDNS client and server efficiency is improved with a shared socket and message parser
+
 -   @matter/nodejs
     - Enhancement: Uses "stat" to determine storage file existence instead of reading all content
     - Fix: Corrects network interface selection logic for windows 
